@@ -2,19 +2,14 @@ package at.fhooe.me.android.mydragon
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.Button
 import at.fhooe.me.android.mydragon.databinding.SelectDragonEggBinding
-import at.fhooe.me.android.mydragon.ManageDragon
-import at.fhooe.me.android.mydragon.R.id
-import at.fhooe.me.android.mydragon.R.id.continue_button
-import at.fhooe.me.android.mydragon.R.id.dragon_name
-import at.fhooe.me.android.mydragon.R.layout.select_dragon_egg
 import at.fhooe.me.android.mydragon.R.layout.select_dragon_name
-import at.fhooe.me.android.mydragon.databinding.SelectDragonNameBinding
+import at.fhooe.me.android.mydragon.dragonController.Dragon
+import at.fhooe.me.android.mydragon.dragonController.DragonManager
+import at.fhooe.me.android.mydragon.dragonController.ElementSelect
 
 class SelectionDragon: Activity(){
     lateinit var binding:SelectDragonEggBinding
