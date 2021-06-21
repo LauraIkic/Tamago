@@ -2,9 +2,7 @@ package at.fhooe.me.android.mydragon
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import at.fhooe.me.android.mydragon.databinding.ActivityMainBinding
 
 class MainActivity : Activity() {
