@@ -34,6 +34,16 @@ class DragonManager {
                 element = ElementSelect.Wind
             }
 
+            if (elementString == "Fire"){
+                element= ElementSelect.Fire
+            }
+
+            if (elementString == "Earth"){
+                element = ElementSelect.Earth
+            }
+
+
+
             return Dragon(
                 name!!,
                 element!!,
