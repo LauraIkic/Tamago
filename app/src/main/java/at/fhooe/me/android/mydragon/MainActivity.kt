@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import at.fhooe.me.android.mydragon.databinding.ActivityMainBinding
-import at.fhooe.me.android.mydragon.dragonController.Dragon
+
 import at.fhooe.me.android.mydragon.dragonController.DragonManager
 
 class MainActivity : Activity() {
@@ -13,6 +13,8 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        DragonManager.defaultDragon = DragonManager.getDragonFromSharedPref(this)
 
         binding.startButton.setOnClickListener{
 

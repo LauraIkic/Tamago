@@ -40,6 +40,11 @@ class SelectionDragon : Activity() {
             createDragonAndPlay(ElementSelect.Wind)
         }
 
+        // Fire Dragon
+        binding.earth.setOnClickListener {
+            startActivity(Intent(applicationContext,Game::class.java))
+        }
+
 
     }
 
@@ -61,7 +66,7 @@ class SelectionDragon : Activity() {
                 return@setOnClickListener
 
             } else {
-                val dragon = Dragon(dragonName, element, 0)
+                val dragon = Dragon(dragonName, element, 0, 0)
                 DragonManager.saveDragonInSharedPref(this, dragon)
 
                 Log.d(TAG, "getNameDialog:: after Button Listener")

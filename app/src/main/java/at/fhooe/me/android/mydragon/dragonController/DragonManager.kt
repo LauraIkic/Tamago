@@ -2,6 +2,8 @@ package at.fhooe.me.android.mydragon.dragonController
 
 import android.app.Activity
 import android.content.Context
+import android.widget.Toast
+import androidx.lifecycle.MutableLiveData
 
 class DragonManager {
 
@@ -14,8 +16,10 @@ class DragonManager {
             editor.putString("Name", dragon.name)
             editor.putString("Element", dragon.element.toString())
             editor.putInt("DaysCounter", dragon.daysCounter)
+            editor.putLong("lastTouchInput", dragon.lastTouchInput)
             editor.apply()
 
+            Toast.makeText(context, "Saved Dragon in Shared Pref", Toast.LENGTH_SHORT).show()
             defaultDragon = dragon
         }
 
@@ -24,6 +28,7 @@ class DragonManager {
             val name = appSharedPrefs.getString("Name", "")
             val elementString = appSharedPrefs.getString("Element", "")
             val daysCounter = appSharedPrefs.getInt("DaysCounter", -1)
+            val lastTouchInput = appSharedPrefs.getLong("lastTouchInput", -1)
 
             var element: ElementSelect? = null
 
@@ -47,7 +52,8 @@ class DragonManager {
             return Dragon(
                 name!!,
                 element!!,
-                daysCounter
+                daysCounter,
+                lastTouchInput
             )
         }
 
