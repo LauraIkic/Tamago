@@ -11,6 +11,7 @@
         android:theme="@style/Theme.MyDragon">
         <activity android:name=".SelectionDragon"/>
         <activity android:name=".Game"/>
+        <activity android:name=".CleanEgg"/>
         <activity android:name=".MainActivity">
         <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

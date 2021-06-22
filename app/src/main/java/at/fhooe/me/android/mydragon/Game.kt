@@ -29,19 +29,19 @@ class Game : AppCompatActivity() {
 
         binding.dragonName.text = DragonManager.defaultDragon?.name
         binding.element.text = DragonManager.defaultDragon?.element.toString()
-        binding.number.text = DragonManager.defaultDragon?.daysCounter.toString()
-
+        binding.gameTvCounter.text = DragonManager.defaultDragon?.daysCounter.toString()
+        var spongeMotionCounter: Int = 0
 
         var listener = View.OnTouchListener(function = { view, motionEvent ->
+            spongeMotionCounter = motionEvent.eventTime.toInt()
             if (motionEvent.action == MotionEvent.ACTION_MOVE) {
                 view.y = motionEvent.rawY - view.height / 2
                 view.x = motionEvent.rawX - view.width / 2
+               
             } else {
                 view.y = view.height * 4.toFloat()
                 view.x = view.width * 3.3.toFloat()
-
             }
-
             true
         })
 
@@ -62,11 +62,16 @@ class Game : AppCompatActivity() {
             binding.gameTvCounter.text = DragonManager.defaultDragon?.daysCounter.toString()
         })
 
-        // show a timer for next possible touch input
+         // show a timer for next possible touch input
         createTimer()
 
+
+        binding.textView3.text = spongeMotionCounter.toString()
+
+
+
         // Touch Event fired
-        binding.gameTouchSimulationButton.setOnClickListener {
+       if (spongeMotionCounter == 3) {
             // when egg hutch --> do something
             if (NUMBER_OF_INTERACTIONS_FINISH <= DragonManager.defaultDragon?.daysCounter!!) {
                 Toast.makeText(baseContext, "Ei geschlüft, Hurraa", Toast.LENGTH_SHORT).show()
@@ -85,6 +90,12 @@ class Game : AppCompatActivity() {
                 DragonManager.defaultDragon?.daysCounter = counter!!
                 daysCounterObservable.value = counter
 
+
+                //switch to clean egg
+                startActivity(Intent(applicationContext, CleanEgg::class.java))
+
+
+
                 // save actual Time in Dragon
                 DragonManager.defaultDragon?.lastTouchInput = System.currentTimeMillis()
 
@@ -99,12 +110,9 @@ class Game : AppCompatActivity() {
             } else {
                 Toast.makeText(baseContext, "Dauer noch nicht erreicht", Toast.LENGTH_SHORT).show()
             }
-
-
         }
-
-
     }
+
 
     private fun createTimer() {
         // calculate amount of time for next input is possible
