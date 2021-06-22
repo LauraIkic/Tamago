@@ -40,9 +40,14 @@ class SelectionDragon : Activity() {
             createDragonAndPlay(ElementSelect.Wind)
         }
 
-        // Fire Dragon
+        // Earth Dragon
         binding.earth.setOnClickListener {
             startActivity(Intent(applicationContext,Game::class.java))
+        }
+
+        // Fire Dragon --> Animation
+        binding.Fire.setOnClickListener {
+            startActivity(Intent(applicationContext,DragonHatch::class.java))
         }
 
 

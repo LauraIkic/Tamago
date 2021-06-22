@@ -23,7 +23,7 @@ class DragonManager {
             defaultDragon = dragon
         }
 
-        fun getDragonFromSharedPref(context: Context): Dragon {
+        fun getDragonFromSharedPref(context: Context): Dragon? {
             val appSharedPrefs = context.getSharedPreferences("Dragon", Activity.MODE_PRIVATE)
             val name = appSharedPrefs.getString("Name", "")
             val elementString = appSharedPrefs.getString("Element", "")
@@ -39,14 +39,17 @@ class DragonManager {
                 element = ElementSelect.Wind
             }
 
-            if (elementString == "Fire"){
-                element= ElementSelect.Fire
+            if (elementString == "Fire") {
+                element = ElementSelect.Fire
             }
 
-            if (elementString == "Earth"){
+            if (elementString == "Earth") {
                 element = ElementSelect.Earth
             }
 
+            if (name == null && elementString == null && daysCounter == -1) {
+                return null
+            }
 
 
             return Dragon(

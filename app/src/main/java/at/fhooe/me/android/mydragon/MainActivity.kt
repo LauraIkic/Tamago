@@ -14,16 +14,15 @@ class MainActivity : Activity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        DragonManager.defaultDragon = DragonManager.getDragonFromSharedPref(this)
 
-        binding.startButton.setOnClickListener{
+        binding.startButton.setOnClickListener {
 
-
-            if (DragonManager.defaultDragon==null){
-                startActivity(Intent(applicationContext,SelectionDragon::class.java))
+            if (DragonManager.defaultDragon == null) {
+                startActivity(Intent(applicationContext, SelectionDragon::class.java))
                 finish()
-        } else {
-            startActivity(Intent(applicationContext,Game::class.java))
+            } else {
+                DragonManager.defaultDragon = DragonManager.getDragonFromSharedPref(this)
+                startActivity(Intent(applicationContext, Game::class.java))
             }
 
 
