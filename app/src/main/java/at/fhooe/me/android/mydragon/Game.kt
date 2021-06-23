@@ -62,7 +62,7 @@ class Game : AppCompatActivity() {
                 // check if user can hutch the egg
                 val currentTime = System.currentTimeMillis()
                 val lastTouchInput = DragonManager.defaultDragon?.lastTouchInput
-                 <
+
 
                 if ((currentTime - lastTouchInput!!) > DURATION_TO_NEXT_CLICK) {
                     // increase daysCounter

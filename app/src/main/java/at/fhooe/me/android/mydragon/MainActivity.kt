@@ -18,7 +18,8 @@ class MainActivity : Activity() {
         binding.startButton.setOnClickListener {
 
             if (DragonManager.defaultDragon == null) {
-                startActivity(Intent(applicationContext, SelectionDragon::class.java))
+                startActivity(Intent(applicationContext, Story::class.java))
+               // startActivity(Intent(applicationContext, SelectionDragon::class.java))
                 finish()
             } else {
                 DragonManager.defaultDragon = DragonManager.getDragonFromSharedPref(this)
