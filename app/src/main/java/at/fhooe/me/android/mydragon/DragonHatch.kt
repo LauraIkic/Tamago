@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.core.view.isVisible
 import at.fhooe.me.android.mydragon.databinding.ActivityDragonHatchBinding
+import at.fhooe.me.android.mydragon.dragonController.DragonManager
 
 class DragonHatch : AppCompatActivity() {
 
@@ -25,10 +26,9 @@ class DragonHatch : AppCompatActivity() {
         // start Animation from Dragon after 8 sec
         Handler().postDelayed({
             animateDragon()
-        }, 8000)
+        }, 7000)
 
     }
-
 
     private fun animateDragon() {
         binding.animationEgg.isVisible = false
@@ -38,7 +38,9 @@ class DragonHatch : AppCompatActivity() {
         binding.animationDragon.playAnimation()
 
         Handler().postDelayed({
+            // delete Dragon
+            DragonManager.resetDragon(baseContext)
             startActivity(Intent(applicationContext, SelectionDragon::class.java))
-        }, 8000)
+        }, 7000)
     }
 }

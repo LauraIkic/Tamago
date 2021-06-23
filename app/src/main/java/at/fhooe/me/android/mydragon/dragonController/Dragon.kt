@@ -2,7 +2,7 @@ package at.fhooe.me.android.mydragon.dragonController
 
 
 enum class ElementSelect {
-    Water, Wind, Fire, Earth
+    Water, Fire
 }
 
 data class Dragon(

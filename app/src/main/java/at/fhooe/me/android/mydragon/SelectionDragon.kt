@@ -5,13 +5,9 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import at.fhooe.me.android.mydragon.databinding.SelectDragonEggBinding
-import at.fhooe.me.android.mydragon.R.layout.select_dragon_name
 import at.fhooe.me.android.mydragon.dragonController.Dragon
 import at.fhooe.me.android.mydragon.dragonController.DragonManager
 import at.fhooe.me.android.mydragon.dragonController.ElementSelect
@@ -28,21 +24,20 @@ class SelectionDragon : Activity() {
         binding = SelectDragonEggBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         // Water Dragon
         binding.waterDragon.setOnClickListener {
             createDragonAndPlay(ElementSelect.Water)
         }
 
-
-        // Fire Dragon --> Animation
+        // Fire Dragon
         binding.Fire.setOnClickListener {
-            startActivity(Intent(applicationContext,DragonHatch::class.java))
+            createDragonAndPlay(ElementSelect.Fire)
+
         }
     }
 
 
-    // Create new Dialog and ask User for a name dragon --> return this name
+    // Create new Dialog and ask User for a dragon name
     private fun createDragonAndPlay(element: ElementSelect) {
         val selectionName = layoutInflater.inflate(R.layout.select_dragon_name, null)
         val selectionBuilder = AlertDialog.Builder(this)
@@ -50,8 +45,8 @@ class SelectionDragon : Activity() {
         val selectShow = selectionBuilder.show()
 
         val continueButton = selectionName.findViewById<Button>(R.id.continue_button)
-        continueButton.setOnClickListener {
 
+        continueButton.setOnClickListener {
             val dragonNameEditText = selectionName.findViewById<EditText>(R.id.dragon_name)
             val dragonName: String = dragonNameEditText.text.toString()
             if (TextUtils.isEmpty(dragonName)) {
@@ -61,16 +56,11 @@ class SelectionDragon : Activity() {
             } else {
                 val dragon = Dragon(dragonName, element, 0, 0)
                 DragonManager.saveDragonInSharedPref(this, dragon)
-
-                Log.d(TAG, "getNameDialog:: after Button Listener")
                 selectShow.dismiss()
+
                 startActivity(Intent(applicationContext, Game::class.java))
             }
-
         }
-
-
-    }
-
+    } // end createDragonAndPlay
 
 }
