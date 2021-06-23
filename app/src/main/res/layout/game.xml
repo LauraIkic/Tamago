@@ -94,4 +94,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/exitDoor"
+        android:layout_width="56dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/exit_door" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -97,6 +97,15 @@ class Game : AppCompatActivity() {
 
         }) // spongeMotionCounter Observer
 
+
+        // Exit Button
+        binding.exitDoor.setOnClickListener {
+//            finish()
+            finishAffinity()
+        }
+
+
+
         spongeMotionCounter.value = 0
 
 
