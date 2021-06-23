@@ -1,5 +1,6 @@
 package at.fhooe.me.android.mydragon
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
@@ -21,6 +22,7 @@ class Game : AppCompatActivity() {
     lateinit var binding: GameBinding
 
 
+    @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -30,14 +32,80 @@ class Game : AppCompatActivity() {
         binding.dragonName.text = DragonManager.defaultDragon?.name
         binding.element.text = DragonManager.defaultDragon?.element.toString()
         binding.gameTvCounter.text = DragonManager.defaultDragon?.daysCounter.toString()
-        var spongeMotionCounter: Int = 0
+//      var spongeMotionCounter: Int = 0
+
+        // show correct counter status in textview
+        val daysCounterObservable: MutableLiveData<Int> = MutableLiveData()
+        daysCounterObservable.observe(this, {
+            binding.gameTvCounter.text = DragonManager.defaultDragon?.daysCounter.toString()
+        })
+
+        // Counter for sponge moves
+        val spongeMotionCounter: MutableLiveData<Int> = MutableLiveData()
+        spongeMotionCounter.observe(this, {
+           // binding.textView3.text = spongeMotionCounter.value.toString()
+
+            // Touch Event fired
+             if (spongeMotionCounter.value == 250) {
+                // when egg hutch --> do something
+                if (NUMBER_OF_INTERACTIONS_FINISH <= DragonManager.defaultDragon?.daysCounter!!) {
+                    Toast.makeText(baseContext, "Ei geschlüft, Hurraa", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(applicationContext, SelectionDragon::class.java))
+                    // do something fancy
+
+
+
+
+
+                }
+
+                // check if user can hutch the egg
+                val currentTime = System.currentTimeMillis()
+                val lastTouchInput = DragonManager.defaultDragon?.lastTouchInput
+                 <
+
+                if ((currentTime - lastTouchInput!!) > DURATION_TO_NEXT_CLICK) {
+                    // increase daysCounter
+                    var counter = DragonManager.defaultDragon?.daysCounter!!
+                    counter++
+                    DragonManager.defaultDragon?.daysCounter = counter!!
+                    daysCounterObservable.value = counter
+
+
+                    //switch to clean egg
+                   startActivity(Intent(applicationContext, CleanEgg::class.java))
+                 //   val cleanEggBG = findViewById<View>()
+
+
+
+                    // save actual Time in Dragon
+                    DragonManager.defaultDragon?.lastTouchInput = System.currentTimeMillis()
+
+                    // set up a new Time
+                    createTimer()
+
+                    // save Dragon permanent
+                    DragonManager.saveDragonInSharedPref(
+                        applicationContext,
+                        DragonManager.defaultDragon!!
+                    )
+                } else {
+                    Toast.makeText(baseContext, "Dauer noch nicht erreicht", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+
+        }) // spongeMotionCounter Observer
+
+        spongeMotionCounter.value = 0
+
 
         var listener = View.OnTouchListener(function = { view, motionEvent ->
-            spongeMotionCounter = motionEvent.eventTime.toInt()
+            spongeMotionCounter.value = spongeMotionCounter.value?.plus(1)
             if (motionEvent.action == MotionEvent.ACTION_MOVE) {
                 view.y = motionEvent.rawY - view.height / 2
                 view.x = motionEvent.rawX - view.width / 2
-               
+
             } else {
                 view.y = view.height * 4.toFloat()
                 view.x = view.width * 3.3.toFloat()
@@ -56,61 +124,17 @@ class Game : AppCompatActivity() {
         binding.gameTvCounter.text = DragonManager.defaultDragon?.daysCounter.toString()
 
 
-        // show correct counter status in textview
-        val daysCounterObservable: MutableLiveData<Int> = MutableLiveData()
-        daysCounterObservable.observe(this, {
-            binding.gameTvCounter.text = DragonManager.defaultDragon?.daysCounter.toString()
-        })
 
-         // show a timer for next possible touch input
+
+        // show a timer for next possible touch input
         createTimer()
 
 
-        binding.textView3.text = spongeMotionCounter.toString()
+//        binding.textView3.text = spongeMotionCounter.toString()
 
 
 
-        // Touch Event fired
-       if (spongeMotionCounter == 3) {
-            // when egg hutch --> do something
-            if (NUMBER_OF_INTERACTIONS_FINISH <= DragonManager.defaultDragon?.daysCounter!!) {
-                Toast.makeText(baseContext, "Ei geschlüft, Hurraa", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(applicationContext, SelectionDragon::class.java))
-                // do something fancy
-            }
 
-            // check if user can hutch the egg
-            val currentTime = System.currentTimeMillis()
-            val lastTouchInput = DragonManager.defaultDragon?.lastTouchInput
-
-            if ((currentTime - lastTouchInput!!) > DURATION_TO_NEXT_CLICK) {
-                // increase daysCounter
-                var counter = DragonManager.defaultDragon?.daysCounter!!
-                counter++
-                DragonManager.defaultDragon?.daysCounter = counter!!
-                daysCounterObservable.value = counter
-
-
-                //switch to clean egg
-                startActivity(Intent(applicationContext, CleanEgg::class.java))
-
-
-
-                // save actual Time in Dragon
-                DragonManager.defaultDragon?.lastTouchInput = System.currentTimeMillis()
-
-                // set up a new Time
-                createTimer()
-
-                // save Dragon permanent
-                DragonManager.saveDragonInSharedPref(
-                    applicationContext,
-                    DragonManager.defaultDragon!!
-                )
-            } else {
-                Toast.makeText(baseContext, "Dauer noch nicht erreicht", Toast.LENGTH_SHORT).show()
-            }
-        }
     }
 
 
@@ -141,6 +165,8 @@ class Game : AppCompatActivity() {
 
             override fun onFinish() {
                 binding.textView7.text = "Ready for hutch the egg :) !"
+
+
             }
         }.start()
     }

@@ -35,22 +35,10 @@ class SelectionDragon : Activity() {
         }
 
 
-        // Wind Dragon
-        binding.wind.setOnClickListener {
-            createDragonAndPlay(ElementSelect.Wind)
-        }
-
-        // Earth Dragon
-        binding.earth.setOnClickListener {
-            startActivity(Intent(applicationContext,Game::class.java))
-        }
-
         // Fire Dragon --> Animation
         binding.Fire.setOnClickListener {
             startActivity(Intent(applicationContext,DragonHatch::class.java))
         }
-
-
     }
 
 
