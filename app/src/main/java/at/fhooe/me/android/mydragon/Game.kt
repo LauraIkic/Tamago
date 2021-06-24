@@ -44,6 +44,14 @@ class Game : AppCompatActivity() {
         binding.gameCounterTv.text =
             (NUMBER_OF_INTERACTIONS_FINISH + 1 - DragonManager.defaultDragon?.daysCounter!!).toString()
 
+        // change sponge or fire
+        val interactionTool = findViewById<ImageView>(R.id.game_sponge)
+        if (DragonManager.defaultDragon?.element == ElementSelect.Water) {
+            interactionTool.setImageResource(R.drawable.water_sponge)
+        } else {
+            interactionTool.setImageResource(R.drawable.flame)
+        }
+
         backgroundImage = findViewById(R.id.game_egg)
 
         // set Background Image
