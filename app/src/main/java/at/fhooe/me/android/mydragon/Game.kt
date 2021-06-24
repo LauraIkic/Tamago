@@ -103,8 +103,6 @@ class Game : AppCompatActivity() {
         }
 
         spongeMotionCounter.value = 0
-        val setBackX =binding.gameSponge.translationX
-        val setBackY = binding.gameSponge.translationY
 
         val listener = View.OnTouchListener(function = { view, motionEvent ->
             spongeMotionCounter.value = spongeMotionCounter.value?.plus(1)
@@ -113,12 +111,9 @@ class Game : AppCompatActivity() {
                 view.x = motionEvent.rawX - view.width / 2
 
             } else {
-                //view.y = setBackY
-              //  view.x = setBackX
-                view.y =binding.root.height.toFloat() -binding.gameSponge.height.toFloat()
-                //view.height * 4.toFloat()
-               view.x = binding.root.width.toFloat() -binding.gameSponge.width.toFloat()
-                    //view.width * 3.3.toFloat()
+
+                view.y = binding.root.height.toFloat() - binding.gameSponge.height.toFloat()
+                view.x = binding.root.width.toFloat() - binding.gameSponge.width.toFloat()
             }
             true
         })
@@ -189,7 +184,7 @@ class Game : AppCompatActivity() {
                     backgroundImage.setImageResource(R.drawable.select_blue_dirty)
                 }
                 ElementSelect.Fire -> {
-                    backgroundImage.setImageResource(R.drawable.select_red)
+                    backgroundImage.setImageResource(R.drawable.select_red_dirty)
                 }
                 else -> startActivity(Intent(applicationContext, MainActivity::class.java))
             }
