@@ -7,18 +7,17 @@
     android:background="@drawable/forest_ancient"
     tools:context=".MainActivity">
 
-    <Button
+    <ImageView
         android:id="@+id/start_button"
-        android:layout_width="156dp"
-        android:layout_height="91dp"
-        android:background="@drawable/start"
-        android:foreground="@drawable/start"
-        android:text="START"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:layout_width="182dp"
+        android:layout_height="109dp"
+        android:clickable="true"
+        android:src="@drawable/start_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.55"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.516" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
