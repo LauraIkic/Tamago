@@ -20,7 +20,7 @@ class DragonHatch : AppCompatActivity() {
 
         // start Animation from Egg
         binding.animationEgg.speed = 0.5F
-        binding.animationEgg.setBackgroundColor(Color.BLACK)
+       // binding.animationEgg.setBackgroundColor(Color.BLACK)
         binding.animationEgg.playAnimation()
 
         // start Animation from Dragon after 8 sec
@@ -34,7 +34,7 @@ class DragonHatch : AppCompatActivity() {
         binding.animationEgg.isVisible = false
         binding.animationDragon.isVisible = true
         binding.animationDragon.speed = 0.7F
-        binding.animationDragon.setBackgroundColor(Color.BLACK)
+   //     binding.animationDragon.setBackgroundColor(Color.BLACK)
         binding.animationDragon.playAnimation()
 
         Handler().postDelayed({

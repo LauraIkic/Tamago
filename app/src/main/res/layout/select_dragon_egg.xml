@@ -78,6 +78,6 @@
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/Fire"
         app:layout_constraintVertical_bias="0.203"
-        app:srcCompat="@drawable/select_red" />
+        android:src="@drawable/select_red" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
