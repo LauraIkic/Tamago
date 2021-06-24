@@ -201,7 +201,7 @@ class Game : AppCompatActivity() {
                         backgroundImage.setImageResource(R.drawable.select_blue_dirty)
                     }
                     ElementSelect.Fire -> {
-                        backgroundImage.setImageResource(R.drawable.select_red)
+                        backgroundImage.setImageResource(R.drawable.select_red_dirty)
                     }
                     else -> startActivity(
                         Intent(
