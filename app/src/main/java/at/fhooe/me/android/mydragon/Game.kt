@@ -103,6 +103,8 @@ class Game : AppCompatActivity() {
         }
 
         spongeMotionCounter.value = 0
+        val setBackX =binding.gameSponge.translationX
+        val setBackY = binding.gameSponge.translationY
 
         val listener = View.OnTouchListener(function = { view, motionEvent ->
             spongeMotionCounter.value = spongeMotionCounter.value?.plus(1)
@@ -111,8 +113,12 @@ class Game : AppCompatActivity() {
                 view.x = motionEvent.rawX - view.width / 2
 
             } else {
-                view.y = view.height * 4.toFloat()
-                view.x = view.width * 3.3.toFloat()
+                //view.y = setBackY
+              //  view.x = setBackX
+                view.y =binding.root.height.toFloat() -binding.gameSponge.height.toFloat()
+                //view.height * 4.toFloat()
+               view.x = binding.root.width.toFloat() -binding.gameSponge.width.toFloat()
+                    //view.width * 3.3.toFloat()
             }
             true
         })
