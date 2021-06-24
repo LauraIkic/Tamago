@@ -186,10 +186,10 @@ class Game : AppCompatActivity() {
             // Dirty Eggs
             when (dragonElement) {
                 ElementSelect.Water -> {
-//                    backgroundImage.setBackgroundResource(R.drawable.water_egg_dirty)
+                    backgroundImage.setImageResource(R.drawable.select_blue_dirty)
                 }
                 ElementSelect.Fire -> {
-//                    backgroundImage.setBackgroundResource(R.drawable.fire_pic)
+                    backgroundImage.setImageResource(R.drawable.fire_pic)
                 }
                 else -> startActivity(Intent(applicationContext, MainActivity::class.java))
             }
@@ -198,10 +198,10 @@ class Game : AppCompatActivity() {
                 // Dirty Eggs
                 when (dragonElement) {
                     ElementSelect.Water -> {
-//                        backgroundImage.setBackgroundResource(R.drawable.water_egg_dirty)
+                        backgroundImage.setImageResource(R.drawable.select_blue_dirty)
                     }
                     ElementSelect.Fire -> {
-//                        backgroundImage.setBackgroundResource(R.drawable.fire_pic)
+                        backgroundImage.setImageResource(R.drawable.fire_pic)
                     }
                     else -> startActivity(
                         Intent(
@@ -214,10 +214,10 @@ class Game : AppCompatActivity() {
                 // Clean Eggs
                 when (dragonElement) {
                     ElementSelect.Water -> {
-                        backgroundImage.setBackgroundResource(R.drawable.select_blue)
+                        backgroundImage.setImageResource(R.drawable.select_blue)
                     }
                     ElementSelect.Fire -> {
-                        backgroundImage.setBackgroundResource(R.drawable.select_red)
+                        backgroundImage.setImageResource(R.drawable.select_red)
                     }
                     else -> startActivity(
                         Intent(
