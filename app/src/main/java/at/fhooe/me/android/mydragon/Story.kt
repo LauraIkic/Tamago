@@ -13,8 +13,10 @@ class Story:AppCompatActivity() {
         binding = StoryBookBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.story.text = "You entered an ancient forest that used to belong to the oldest species in the world. \n" +
-                "A species that has been forgotten for a long long time. \n"
+        binding.story.text = "You entered an ancient forest that used to belong to the oldest species in the wrold. \n" +
+                "A species that has been forgotten for a long long time. \n" +
+                "But there right underneath a tree you find a glowing egg.\n" +
+                "It´s the last dragon egg and it´s your responsibility to take care of it…… \n"
 
         binding.continueToSelect.setOnClickListener{
             startActivity(Intent(applicationContext, SelectionDragon::class.java))
